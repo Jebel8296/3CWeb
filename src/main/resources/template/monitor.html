@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>ECSS-IDAUTH Monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div class="container-fluid">
+		<h1>ECSS-IDAUTH Monitor</h1>
+		<form action="/monitor/search">
+			<fieldset>
+				phone:<input type="text" name="phone_number" /> <input
+					type="submit" value="Search" />
+			</fieldset>
+		</form>
+		<table>
+			<tr>
+				<th>id</th>
+				<th>serial_number</th>
+				<th>phone_number</th>
+				<th>certNo</th>
+				<th>order_id</th>
+				<th>create_time</th>
+				<th>update_time</th>
+				<th>status</th>
+				<th>response</th>
+				<th>type</th>
+				<th>channel</th>
+			</tr>
+			<tr th:each="o : ${context.get('monitors')}">
+				<td th:text="${o.id}"></td>
+				<td th:text="${o.serial_number}"></td>
+				<td th:text="${o.phone_number}"></td>
+				<td th:text="${o.certNo}"></td>
+				<td th:text="${o.order_id}"></td>
+				<td th:text="${o.create_time}"></td>
+				<td th:text="${o.update_time}"></td>
+				<td th:text="${o.status}"></td>
+				<td th:text="${o.response}"></td>
+				<td th:text="${o.type}"></td>
+				<td th:text="${o.channel}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

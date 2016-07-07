@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2015-2016 the original author or authors. Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.vertx.web.mapper.TbIDAuthMapper">
+
+	<resultMap type="TbIDAuth" id="resMap">
+		<id column="id" property="id" />
+		<result column="serial_number" property="serial_number" />
+		<result column="phone_number" property="phone_number" />
+		<result column="certNo" property="certNo" />
+		<result column="order_id" property="order_id" />
+		<result column="type" property="type" />
+		<result column="channel" property="channel" />
+		<result column="create_time" property="create_time" />
+		<result column="status" property="status" />
+		<result column="response" property="response" />
+		<result column="update_time" property="update_time" />
+	</resultMap>
+	<select id="selectById" resultType="TbIDAuth">
+		select * from tb_id_auth
+		where id = #{id}
+	</select>
+	<select id="selectALL" resultMap="resMap">
+		select id
+		,serial_number
+		,phone_number
+		,certNo
+		,order_id
+		,type
+		,channel
+		,create_time
+		,status
+		,response
+		,update_time from tb_id_auth
+		order by id desc limit 20 
+	</select>
+	<select id="selectByPhone" parameterType="TbIDAuth" resultMap="resMap">
+		select id
+		,serial_number
+		,phone_number
+		,certNo
+		,order_id
+		,type
+		,channel
+		,create_time
+		,status
+		,response
+		,update_time from tb_id_auth where 1=1
+		<if test="phone_number != null">
+			and phone_number=#{phone_number}
+		</if>
+		order by id desc limit 20
+	</select>
+</mapper>
